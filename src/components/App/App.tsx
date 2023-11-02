@@ -1,5 +1,7 @@
 import { Box } from '@mui/material';
 import { FC } from 'react';
+import { Header } from '../Header';
+import { ContentArea } from '../ContentArea';
 
 const App: FC = () => {
   return (
@@ -18,14 +20,14 @@ const App: FC = () => {
           gridArea: 'header',
         }}
       >
-        header
+        <Header />
       </Box>
       <Box
         sx={{
           gridArea: 'main',
         }}
       >
-        content
+        <ContentArea />
       </Box>
     </Box>
   );
