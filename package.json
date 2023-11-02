@@ -1,5 +1,6 @@
 {
-  "name": "darkmode-switch-redux",
+  "name": "pokemon-element-counter",
+  "author": "ZacKenichi",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
