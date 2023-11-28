@@ -5,7 +5,7 @@ const Footer: FC = () => {
   const d = new Date();
   let year = d.getFullYear();
 
-  const copyright = `Copyright © ${year} Paramount Book`;
+  const copyright = `Copyright © ${year} Digital Axis Media`;
 
   return (
     <Box sx={{ flexGrow: 1, alignItems: 'center', p: 2 }}>

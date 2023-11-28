@@ -16,12 +16,13 @@ const UnderConstruction: FC = () => {
     >
       <Grid item xs={12}>
         <Typography variant="h1" textAlign="center">
-          A New Chapter Awaits
+          Unlocking Digital Horizons
         </Typography>
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h2" textAlign="center">
-          We're Crafting Something Special.
+          We're Crafting Something Extraordinary. Stay Tuned for the Future of
+          Media Excellence.
         </Typography>
       </Grid>
       <Grid item xs={12}>

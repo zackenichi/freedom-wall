@@ -1,7 +1,7 @@
 import { AppBar, Box, Grid, Toolbar, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
+import ExploreIcon from '@mui/icons-material/Explore';
 
 interface HeaderProps {
   title: string;
@@ -30,7 +30,7 @@ const Header: FC<HeaderProps> = ({ title }) => {
               onClick={handleLogoClick}
               sx={{ cursor: 'pointer ', display: 'flex', alignItems: 'center' }}
             >
-              <MenuBookIcon fontSize="large" />
+              <ExploreIcon fontSize="large" />
               <Typography variant="h2" component="div" sx={{ ml: 1 }}>
                 {title}
               </Typography>

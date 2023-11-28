@@ -26,7 +26,7 @@ const App: FC = () => {
           gridArea: 'header',
         }}
       >
-        <Header title="Paramount Book" />
+        <Header title="Digital Axis Media" />
       </Box>
       <Box
         sx={{

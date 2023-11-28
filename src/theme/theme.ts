@@ -5,7 +5,7 @@ const componentOverrides: ThemeOptions['components'] = {
   MuiTypography: {
     styleOverrides: {
       root: {
-        fontFamily: 'Montserrat, sans-serif',
+        fontFamily: 'Raleway, sans-serif',
       },
       h1: {
         fontSize: '2.5rem',
