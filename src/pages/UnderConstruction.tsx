@@ -3,8 +3,9 @@ import { FC } from 'react';
 import { Countdown } from '../components/CountDown';
 
 const UnderConstruction: FC = () => {
-  // Set the target date to December 15
-  const targetDate = new Date('December 15, 2023 00:00:00 GMT+08:00');
+  // Set the target date to 7 days ahead from the current date
+  const targetDate = new Date();
+  targetDate.setDate(targetDate.getDate() + 7);
 
   return (
     <Grid
@@ -16,13 +17,13 @@ const UnderConstruction: FC = () => {
     >
       <Grid item xs={12}>
         <Typography variant="h1" textAlign="center">
-          Unlocking Digital Horizons
+          Crafting Excellence in Progress
         </Typography>
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h2" textAlign="center">
-          We're Crafting Something Extraordinary. Stay Tuned for the Future of
-          Media Excellence.
+          We're Building Something Extraordinary. Stay Tuned for a Grand
+          Unveiling!
         </Typography>
       </Grid>
       <Grid item xs={12}>

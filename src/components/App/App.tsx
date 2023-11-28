@@ -26,7 +26,7 @@ const App: FC = () => {
           gridArea: 'header',
         }}
       >
-        <Header title="Digital Axis Media" />
+        <Header title="TechVista Solutions" />
       </Box>
       <Box
         sx={{

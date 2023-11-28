@@ -1,7 +1,7 @@
 const colors = {
-  primary: '#001F3F',
-  secondary: '#0074E4',
-  background: '#ADD8E6',
+  primary: '#008080',
+  secondary: '#FFA500',
+  background: '#E0E0E0',
   warning: '#bc4749',
   info: '#fff3b0',
   success: '#386641',
