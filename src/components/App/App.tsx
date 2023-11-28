@@ -16,7 +16,7 @@ const App: FC = () => {
         height: '100vh',
         gridTemplateRows: 'auto 1fr auto',
         gridTemplateAreas: `"header" "main" "footer"`,
-        p: 2,
+        // p: 2,
       }}
       id="appContainer"
       role="main"
@@ -26,7 +26,7 @@ const App: FC = () => {
           gridArea: 'header',
         }}
       >
-        <Header />
+        <Header title="Paramount Book" />
       </Box>
       <Box
         sx={{

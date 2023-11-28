@@ -1,5 +1,6 @@
 // pages
-import { Login, Home } from './pages';
+// import { Home } from './pages';
+import { UnderConstruction } from './pages';
 
 // other
 import { FC } from 'react';
@@ -15,18 +16,10 @@ interface Route {
 
 export const routes: Array<Route> = [
   {
-    key: 'login-route',
-    title: 'Login',
-    path: '/login',
-    needsLogin: false,
-    component: Login,
-  },
-
-  {
     key: 'home-route',
-    title: 'Dashboard',
+    title: 'home',
     path: '/',
     needsLogin: true,
-    component: Home,
+    component: UnderConstruction,
   },
 ];

@@ -4,30 +4,72 @@ import colors from './colors';
 const componentOverrides: ThemeOptions['components'] = {
   MuiTypography: {
     styleOverrides: {
+      root: {
+        fontFamily: 'Montserrat, sans-serif',
+      },
       h1: {
         fontSize: '2.5rem',
         fontWeight: 800,
         color: colors.primary,
+        '@media (max-width: 768px)': {
+          fontSize: '1.5rem',
+        },
+        '@media (max-width: 400px)': {
+          fontSize: '1.2rem',
+        },
       },
       h2: {
-        fontSize: '2rem',
+        fontSize: '1.4rem',
         fontWeight: 800,
+        color: colors.secondary,
+        '@media (max-width: 768px)': {
+          fontSize: '1rem',
+        },
+        '@media (max-width: 400px)': {
+          fontSize: '0.8rem',
+        },
       },
       h3: {
         fontSize: '1.2rem',
         fontWeight: 600,
+        color: colors.secondary,
+        '@media (max-width: 768px)': {
+          fontSize: '1rem',
+        },
+        '@media (max-width: 400px)': {
+          fontSize: '0.6rem',
+        },
       },
       h4: {
-        fontSize: '1rem',
+        fontSize: '0.8rem',
         fontWeight: 600,
         color: colors.primary,
+        '@media (max-width: 768px)': {
+          fontSize: '0.6rem',
+        },
+        '@media (max-width: 400px)': {
+          fontSize: '0.6rem',
+        },
+      },
+      body1: {
+        fontSize: '0.9rem',
+        color: colors.secondary,
+        '@media (max-width: 768px)': {
+          fontSize: '0.8rem',
+        },
+        '@media (max-width: 400px)': {
+          fontSize: '0.6rem',
+        },
       },
       body2: {
-        fontSize: '16px',
+        fontSize: '0.8rem',
         fontWeight: 400,
-        textDecoration: 'underline',
-        '&:hover': {
-          cursor: 'pointer',
+        color: colors.secondary,
+        '@media (max-width: 768px)': {
+          fontSize: '0.6rem',
+        },
+        '@media (max-width: 400px)': {
+          fontSize: '0.6rem',
         },
       },
     },

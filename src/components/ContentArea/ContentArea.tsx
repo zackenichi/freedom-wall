@@ -8,6 +8,7 @@ const ContentArea: FC<PropsWithChildren> = ({ children }) => {
       sx={{
         gridArea: 'main',
         maxHeight: 'calc(100vh - 64px)',
+        p: 4,
       }}
     >
       <Grid container spacing={4} justifyContent="center">
