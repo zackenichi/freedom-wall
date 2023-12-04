@@ -2,6 +2,7 @@ import { AppBar, Box, Grid, Toolbar, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MessageIcon from '@mui/icons-material/Message';
+import { AddNew } from '../AddNew';
 
 interface HeaderProps {
   title: string;
@@ -39,6 +40,9 @@ const Header: FC<HeaderProps> = ({ title }) => {
               >
                 {title}
               </Typography>
+            </Grid>
+            <Grid item xs={4} textAlign={'right'}>
+              <AddNew />
             </Grid>
           </Grid>
         </Toolbar>

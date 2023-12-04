@@ -1,6 +1,6 @@
 // pages
-// import { Home } from './pages';
-import { UnderConstruction } from './pages';
+import { Board } from './pages';
+// import { UnderConstruction } from './pages';
 
 // other
 import { FC } from 'react';
@@ -20,6 +20,6 @@ export const routes: Array<Route> = [
     title: 'home',
     path: '/',
     needsLogin: true,
-    component: UnderConstruction,
+    component: Board,
   },
 ];

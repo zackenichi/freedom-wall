@@ -5,21 +5,21 @@ const componentOverrides: ThemeOptions['components'] = {
   MuiTypography: {
     styleOverrides: {
       root: {
-        fontFamily: 'Nunito, sans-serif',
+        fontFamily: 'Poppins, sans-serif',
       },
       h1: {
-        fontSize: '2.5rem',
+        fontSize: '1.5rem',
         fontWeight: 800,
         color: colors.primary,
         '@media (max-width: 768px)': {
-          fontSize: '1.5rem',
+          fontSize: '1.2rem',
         },
         '@media (max-width: 400px)': {
-          fontSize: '1.2rem',
+          fontSize: '1rem',
         },
       },
       h2: {
-        fontSize: '1.4rem',
+        fontSize: '1.2rem',
         fontWeight: 800,
         color: colors.secondary,
         '@media (max-width: 768px)': {
@@ -83,6 +83,14 @@ const componentOverrides: ThemeOptions['components'] = {
         '&:hover': {
           backgroundColor: 'rgba(255, 255, 255, 0.25)',
         },
+      },
+    },
+  },
+  MuiButton: {
+    styleOverrides: {
+      root: {
+        borderRadius: '8px',
+        textTransform: 'none',
       },
     },
   },
