@@ -1,7 +1,7 @@
 import { AppBar, Box, Grid, Toolbar, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ExploreIcon from '@mui/icons-material/Explore';
+import MessageIcon from '@mui/icons-material/Message';
 
 interface HeaderProps {
   title: string;
@@ -30,8 +30,13 @@ const Header: FC<HeaderProps> = ({ title }) => {
               onClick={handleLogoClick}
               sx={{ cursor: 'pointer ', display: 'flex', alignItems: 'center' }}
             >
-              <ExploreIcon fontSize="large" />
-              <Typography variant="h2" component="div" sx={{ ml: 1 }}>
+              <MessageIcon fontSize="large" />
+              <Typography
+                variant="h2"
+                component="div"
+                sx={{ ml: 1 }}
+                color="white"
+              >
                 {title}
               </Typography>
             </Grid>

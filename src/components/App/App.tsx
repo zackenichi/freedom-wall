@@ -26,7 +26,7 @@ const App: FC = () => {
           gridArea: 'header',
         }}
       >
-        <Header title="TechVista Solutions" />
+        <Header title="Freedom Wall" />
       </Box>
       <Box
         sx={{

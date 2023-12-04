@@ -17,7 +17,7 @@ const UnderConstruction: FC = () => {
     >
       <Grid item xs={12}>
         <Typography variant="h1" textAlign="center">
-          Crafting Excellence in Progress
+          Building a space for you to share your thoughts and ideas.
         </Typography>
       </Grid>
       <Grid item xs={12}>
