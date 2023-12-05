@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import { FC } from 'react';
 
 import { BoardItem } from '../components/BoardItem';
+import { CreateMessage } from '../components/CreateMessage';
 
 const Board: FC = () => {
   const messages = [
@@ -60,6 +61,7 @@ const Board: FC = () => {
           </Grid>
         );
       })}
+      <CreateMessage />
     </Grid>
   );
 };

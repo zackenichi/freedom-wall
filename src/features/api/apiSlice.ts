@@ -1,13 +1,17 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.github.com/' }),
+  baseQuery: fakeBaseQuery(),
   endpoints: (builder) => ({
-    getRepos: builder.query({
-      query: (username: string) => `users/${username}/repos`,
+    createMessage: builder.mutation({
+      query: (message) => ({
+        url: '/messages',
+        method: 'POST',
+        body: message,
+      }),
     }),
   }),
 });
 
-export const { useGetReposQuery } = apiSlice;
+export const { useCreateMessageMutation } = apiSlice;

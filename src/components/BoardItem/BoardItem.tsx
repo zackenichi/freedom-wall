@@ -6,7 +6,7 @@ import PushPinIcon from '@mui/icons-material/PushPin';
 
 const BoardItem: FC<BoardMessage> = ({ title, content }) => {
   return (
-    <Card>
+    <Card sx={{ borderRadius: 4 }}>
       <CardContent>
         <Grid container justifyContent="space-between">
           <Grid item xs={10}>
