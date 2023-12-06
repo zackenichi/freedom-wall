@@ -1,6 +1,14 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase/firebase';
+import {
+  Timestamp,
+  addDoc,
+  collection,
+  getDocs,
+  orderBy,
+  query,
+  where,
+} from 'firebase/firestore';
+import { db } from '../../../firebase/firebase';
 
 export const messageApiSlice = createApi({
   reducerPath: 'message',
@@ -12,7 +20,14 @@ export const messageApiSlice = createApi({
       async queryFn() {
         try {
           const msgRef = collection(db, 'messages');
-          const querySnaphot = await getDocs(msgRef);
+          const tenMinutesAgo = new Date();
+          tenMinutesAgo.setMinutes(tenMinutesAgo.getMinutes() - 10);
+          const myQuery = query(
+            msgRef,
+            orderBy('createdAt', 'desc'),
+            where('createdAt', '>=', Timestamp.fromDate(tenMinutesAgo))
+          );
+          const querySnaphot = await getDocs(myQuery);
           let messages: any[] = [];
           querySnaphot?.forEach((doc) => {
             messages.push({ id: doc.id, ...doc.data() });
@@ -36,6 +51,7 @@ export const messageApiSlice = createApi({
           return { error: error.message };
         }
       },
+      invalidatesTags: ['Message'],
     }),
   }),
 });
