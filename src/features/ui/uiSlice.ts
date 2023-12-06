@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface UiInitialState {
   openAdd: boolean;
+  isLoading: boolean;
 }
 
 const initialState: UiInitialState = {
   openAdd: false,
+  isLoading: false,
 };
 
 export const uiSlice = createSlice({
@@ -15,10 +17,13 @@ export const uiSlice = createSlice({
     setOpenAdd: (state, action) => {
       state.openAdd = action.payload;
     },
+    setIsLoading: (state, action) => {
+      state.isLoading = action.payload;
+    },
   },
 });
 
-export const { setOpenAdd } = uiSlice.actions;
+export const { setOpenAdd, setIsLoading } = uiSlice.actions;
 
 const UiReducer = uiSlice.reducer;
 

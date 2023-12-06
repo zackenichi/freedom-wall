@@ -15,7 +15,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { setOpenAdd } from '../../features/ui/uiSlice';
-import { useCreateMessageMutation } from '../../features/message/messageApiSlice';
+import { useCreateMessageMutation } from '../../features/api/message/messageApiSlice';
 
 const TITLE_MAX_CHARS = 70;
 const MSG_MAX_CHARS = 240;
@@ -57,10 +57,8 @@ const CreateMessage: FC = () => {
   const handleSend = async () => {
     try {
       dispatch(setOpenAdd(false));
-      console.log('Title:', title);
-      console.log('Sending message...');
-      const response = await addMessage({ title, message });
-      console.log('Response:', response);
+
+      await addMessage({ title, content: message, createdAt: new Date() });
       handleClear();
     } catch (error) {
       console.error('Error adding message:', error);

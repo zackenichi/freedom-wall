@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 // import { apiSlice } from '../features/api/apiSlice';
 import { UiReducer } from '../features/ui/uiSlice';
-import { messageApiSlice } from '../features/message/messageApiSlice';
+import { messageApiSlice } from '../features/api/message/messageApiSlice';
 
 export const store = configureStore({
   reducer: {
