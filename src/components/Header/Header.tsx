@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MessageIcon from '@mui/icons-material/Message';
 import { AddNew } from '../AddNew';
+import { RefreshBtn } from '../RefreshBtn';
 
 interface HeaderProps {
   title: string;
@@ -42,6 +43,7 @@ const Header: FC<HeaderProps> = ({ title }) => {
               </Typography>
             </Grid>
             <Grid item xs={4} textAlign={'right'}>
+              <RefreshBtn />
               <AddNew />
             </Grid>
           </Grid>
