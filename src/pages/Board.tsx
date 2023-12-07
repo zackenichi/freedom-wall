@@ -9,7 +9,7 @@ import { LoadingBackdrop } from '../components/LoadingBackdrop';
 const Board: FC = () => {
   const { data: messages, isFetching } = useFetchMessagesQuery(
     {},
-    { refetchOnFocus: true, pollingInterval: 10 * 60 * 1000 }
+    { refetchOnFocus: true, pollingInterval: 30 * 1000 }
   );
 
   if (isFetching) {
