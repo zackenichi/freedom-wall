@@ -6,16 +6,29 @@ import {
   Modal,
   Slide,
   TextField,
+  Tooltip,
   Typography,
   useMediaQuery,
 } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC, useRef } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
+import AddReactionIcon from '@mui/icons-material/AddReaction';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
-import { setOpenAdd } from '../../features/ui/uiSlice';
+import { setOpenAdd, setOpenEmoji } from '../../features/ui/uiSlice';
 import { useCreateMessageMutation } from '../../features/api/message/messageApiSlice';
+import SelectedField from '../../resources/enums/SelectedField';
+import {
+  setMessage,
+  setMessageCount,
+  setSelectedField,
+  setSelectionStart,
+  setTitle,
+  setTitleCount,
+} from '../../features/message/messageSlice';
+
+import { Timestamp } from 'firebase/firestore';
 
 const TITLE_MAX_CHARS = 70;
 const MSG_MAX_CHARS = 240;
@@ -25,11 +38,18 @@ const CreateMessage: FC = () => {
   const isMobile = useMediaQuery('(max-width: 600px)');
 
   const openAdd = useSelector((state: RootState) => state.ui.openAdd);
+  const title = useSelector((state: RootState) => state.draftMessage.title);
+  const message = useSelector((state: RootState) => state.draftMessage.message);
+  const titleCount = useSelector(
+    (state: RootState) => state.draftMessage.titleCount
+  );
+  const messageCount = useSelector(
+    (state: RootState) => state.draftMessage.messageCount
+  );
 
-  const [title, setTitle] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
-  const [titleCount, setTitleCount] = useState<number>(0);
-  const [messageCount, setMessageCount] = useState<number>(0);
+  // detecting which index of string we are in
+  const titleInputRef = useRef<HTMLInputElement>(null);
+  const messageInputRef = useRef<HTMLInputElement>(null);
 
   const [addMessage] = useCreateMessageMutation();
 
@@ -38,30 +58,53 @@ const CreateMessage: FC = () => {
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-    setTitleCount(e.target.value.length);
+    dispatch(setTitle(e.target.value));
+    dispatch(setTitleCount(e.target.value.length));
   };
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
-    setMessageCount(e.target.value.length);
+    dispatch(setMessage(e.target.value));
+    dispatch(setMessageCount(e.target.value.length));
   };
 
   const handleClear = () => {
-    setTitle('');
-    setMessage('');
-    setTitleCount(0);
-    setMessageCount(0);
+    dispatch(setTitle(''));
+    dispatch(setMessage(''));
+    dispatch(setTitleCount(0));
+    dispatch(setMessageCount(0));
   };
 
   const handleSend = async () => {
     try {
       dispatch(setOpenAdd(false));
 
-      await addMessage({ title, content: message, createdAt: new Date() });
+      const createdAtTimestamp = Timestamp.now();
+
+      await addMessage({
+        title,
+        content: message,
+        createdAt: createdAtTimestamp,
+      });
       handleClear();
     } catch (error) {
       console.error('Error adding message:', error);
+    }
+  };
+
+  const showEmoji = () => {
+    dispatch(setOpenEmoji(true));
+  };
+
+  const updateSelectionStart = (field: SelectedField) => {
+    dispatch(setSelectedField(field));
+    let inputRef =
+      field === SelectedField.Title ? titleInputRef : messageInputRef;
+
+    // if we select at beginning of string, index will be 0
+    // which is falsy, therefore, returning a -1 will be a good flag
+    // to say we are targeting before the current array
+    if (inputRef.current) {
+      dispatch(setSelectionStart(inputRef.current.selectionStart || -1));
     }
   };
 
@@ -92,12 +135,22 @@ const CreateMessage: FC = () => {
               <Typography variant="h2">New Message</Typography>
             </Grid>
             <Grid item xs={2} textAlign="right">
-              <IconButton onClick={handleClose}>
-                <CloseIcon />
-              </IconButton>
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Tooltip title="Insert emoji">
+                  <IconButton onClick={showEmoji}>
+                    <AddReactionIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Close">
+                  <IconButton onClick={handleClose}>
+                    <CloseIcon />
+                  </IconButton>
+                </Tooltip>
+              </Box>
             </Grid>
             <Grid item xs={12}>
               <TextField
+                inputRef={titleInputRef}
                 label="Title"
                 variant="standard"
                 fullWidth
@@ -107,10 +160,12 @@ const CreateMessage: FC = () => {
                   maxLength: TITLE_MAX_CHARS,
                 }}
                 helperText={`${titleCount}/${TITLE_MAX_CHARS}`}
+                onSelect={() => updateSelectionStart(SelectedField.Title)}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                inputRef={messageInputRef}
                 label="Message"
                 variant="filled"
                 fullWidth
@@ -122,6 +177,7 @@ const CreateMessage: FC = () => {
                   maxLength: MSG_MAX_CHARS,
                 }}
                 helperText={`${messageCount}/${MSG_MAX_CHARS}`}
+                onSelect={() => updateSelectionStart(SelectedField.Message)}
               />
             </Grid>
             <Grid item xs={6}>

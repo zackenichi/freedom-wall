@@ -1,16 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import { apiSlice } from '../features/api/apiSlice';
+
 import { UiReducer } from '../features/ui/uiSlice';
 import { messageApiSlice } from '../features/api/message/messageApiSlice';
+import { messageSlice } from '../features/message/messageSlice';
 
 export const store = configureStore({
   reducer: {
     ui: UiReducer,
-    // [apiSlice.reducerPath]: apiSlice.reducer,
+    draftMessage: messageSlice.reducer,
     [messageApiSlice.reducerPath]: messageApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(messageApiSlice.middleware),
+    getDefaultMiddleware({
+      serializableCheck: false, // Disable the serializable check
+    }).concat(messageApiSlice.middleware),
   devTools: true,
 });
 
