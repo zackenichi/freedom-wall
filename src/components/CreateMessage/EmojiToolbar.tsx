@@ -13,7 +13,12 @@ import { setOpenEmoji } from '../../features/ui/uiSlice';
 import { RootState } from '../../app/store';
 import CloseIcon from '@mui/icons-material/Close';
 import emoji from './Emoji';
-import { setMessage, setTitle } from '../../features/message/messageSlice';
+import {
+  setMessage,
+  setMessageCount,
+  setTitle,
+  setTitleCount,
+} from '../../features/message/messageSlice';
 import SelectedField from '../../resources/enums/SelectedField';
 
 const EmojiList: FC = () => {
@@ -31,16 +36,20 @@ const EmojiList: FC = () => {
   );
 
   const handleInsert = (item: string) => {
-    console.log('insert: ', item);
+    let updatedValue;
 
     if (selectedField === SelectedField.Title) {
-      const updatedTitle =
-        title.slice(0, selectionStart) + item + title.slice(selectionStart);
-      dispatch(setTitle(updatedTitle));
+      const insertionIndex = selectionStart >= 0 ? selectionStart : 0;
+      updatedValue =
+        title.slice(0, insertionIndex) + item + title.slice(insertionIndex);
+      dispatch(setTitle(updatedValue));
+      dispatch(setTitleCount(updatedValue.length));
     } else if (selectedField === SelectedField.Message) {
-      const updatedMessage =
-        message.slice(0, selectionStart) + item + message.slice(selectionStart);
-      dispatch(setMessage(updatedMessage));
+      const insertionIndex = selectionStart >= 0 ? selectionStart : 0;
+      updatedValue =
+        message.slice(0, insertionIndex) + item + message.slice(insertionIndex);
+      dispatch(setMessage(updatedValue));
+      dispatch(setMessageCount(updatedValue.length));
     }
   };
 
