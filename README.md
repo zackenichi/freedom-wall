@@ -23,7 +23,7 @@ Added limit of post once every 5 mins.
 ## Milestones
 
 - [x] Message Post-It design
-- [ ] Cloud Database
+- [x] Cloud Database
 - [ ] Self - Post delete or update within 30 seconds - Snackbar
-- [ ] Real-time updates
-- [ ] 10 min post auto destruct
+- [x] Real-time updates
+- [x] 10 min post auto destruct
