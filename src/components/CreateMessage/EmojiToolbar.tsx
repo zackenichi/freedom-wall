@@ -16,6 +16,7 @@ import emoji from './Emoji';
 import {
   setMessage,
   setMessageCount,
+  setSelectionStart,
   setTitle,
   setTitleCount,
 } from '../../features/message/messageSlice';
@@ -37,20 +38,25 @@ const EmojiList: FC = () => {
 
   const handleInsert = (item: string) => {
     let updatedValue;
+    let updatedSelectionStart = selectionStart;
 
     if (selectedField === SelectedField.Title) {
       const insertionIndex = selectionStart >= 0 ? selectionStart : 0;
       updatedValue =
         title.slice(0, insertionIndex) + item + title.slice(insertionIndex);
+      updatedSelectionStart = insertionIndex + item.length;
       dispatch(setTitle(updatedValue));
       dispatch(setTitleCount(updatedValue.length));
     } else if (selectedField === SelectedField.Message) {
       const insertionIndex = selectionStart >= 0 ? selectionStart : 0;
       updatedValue =
         message.slice(0, insertionIndex) + item + message.slice(insertionIndex);
+      updatedSelectionStart = insertionIndex + item.length;
       dispatch(setMessage(updatedValue));
       dispatch(setMessageCount(updatedValue.length));
     }
+
+    dispatch(setSelectionStart(updatedSelectionStart));
   };
 
   return (
