@@ -3,9 +3,12 @@ import {
   Timestamp,
   addDoc,
   collection,
+  doc,
+  getDoc,
   getDocs,
   orderBy,
   query,
+  setDoc,
   where,
 } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase';
@@ -53,8 +56,38 @@ export const messageApiSlice = createApi({
       },
       invalidatesTags: ['Message'],
     }),
+    addReaction: builder.mutation({
+      async queryFn({ messageId, reacts }) {
+        try {
+          const msgRef = doc(collection(db, 'messages'), messageId);
+
+          // Check if the document exists
+          const docSnapshot = await getDoc(msgRef);
+
+          if (docSnapshot.exists()) {
+            // Document exists, update it
+            await setDoc(msgRef, { reacts }, { merge: true });
+            return { data: { id: docSnapshot.id, messageId, reacts } };
+          } else {
+            // Document doesn't exist, create it
+            const newDocRef = await addDoc(collection(db, 'messages'), {
+              messageId,
+              reacts,
+            });
+            return { data: { id: newDocRef.id, messageId, reacts } };
+          }
+        } catch (error: any) {
+          console.error(error);
+          return { error: error.message };
+        }
+      },
+      invalidatesTags: ['Message'],
+    }),
   }),
 });
 
-export const { useFetchMessagesQuery, useCreateMessageMutation } =
-  messageApiSlice;
+export const {
+  useFetchMessagesQuery,
+  useCreateMessageMutation,
+  useAddReactionMutation,
+} = messageApiSlice;
