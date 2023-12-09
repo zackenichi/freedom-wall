@@ -2,14 +2,14 @@ import { Grid } from '@mui/material';
 import { FC } from 'react';
 
 import { BoardItem } from '../components/BoardItem';
-import { CreateMessage } from '../components/CreateMessage';
+import { CreateMessage, EmojiToolbar } from '../components/CreateMessage';
 import { useFetchMessagesQuery } from '../features/api/message/messageApiSlice';
 import { LoadingBackdrop } from '../components/LoadingBackdrop';
 
 const Board: FC = () => {
   const { data: messages, isFetching } = useFetchMessagesQuery(
     {},
-    { refetchOnFocus: true, pollingInterval: 30 * 1000 }
+    { refetchOnFocus: true, pollingInterval: 60 * 1000 }
   );
 
   if (isFetching) {
@@ -31,6 +31,7 @@ const Board: FC = () => {
           })}
       </>
       <CreateMessage />
+      <EmojiToolbar />
     </Grid>
   );
 };

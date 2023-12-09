@@ -37,7 +37,7 @@ const componentOverrides: ThemeOptions['components'] = {
           fontSize: '1rem',
         },
         '@media (max-width: 400px)': {
-          fontSize: '0.6rem',
+          fontSize: '2rem',
         },
       },
       h4: {

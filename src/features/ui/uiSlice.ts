@@ -1,29 +1,35 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-export interface UiInitialState {
+export interface UiState {
   openAdd: boolean;
   isLoading: boolean;
+  openEmoji: boolean;
 }
 
-const initialState: UiInitialState = {
+const initialState: UiState = {
   openAdd: false,
   isLoading: false,
+  openEmoji: false,
 };
 
 export const uiSlice = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    setOpenAdd: (state, action) => {
+    setOpenAdd: (state: UiState, action: PayloadAction<boolean>) => {
       state.openAdd = action.payload;
     },
-    setIsLoading: (state, action) => {
+    setIsLoading: (state: UiState, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
+    },
+
+    setOpenEmoji: (state: UiState, action: PayloadAction<boolean>) => {
+      state.openEmoji = action.payload;
     },
   },
 });
 
-export const { setOpenAdd, setIsLoading } = uiSlice.actions;
+export const { setOpenAdd, setIsLoading, setOpenEmoji } = uiSlice.actions;
 
 const UiReducer = uiSlice.reducer;
 
