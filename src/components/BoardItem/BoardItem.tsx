@@ -3,12 +3,30 @@ import { FC } from 'react';
 import BoardMessage from '../../resources/interfaces/BoardMessage';
 
 import PushPinIcon from '@mui/icons-material/PushPin';
+import { Reaction } from './Reaction';
+import { useAddReactionMutation } from '../../features/api/message/messageApiSlice';
 
-const BoardItem: FC<BoardMessage> = ({ title, content }) => {
+const BoardItem: FC<BoardMessage> = ({ id, title, content, reacts }) => {
+  const [addReaction] = useAddReactionMutation();
+
+  const handleReacts = async (reactionName: string) => {
+    try {
+      const updatedReactions = { ...reacts };
+      (updatedReactions as any)[reactionName] += 1;
+
+      // Assuming addReaction is asynchronous
+      await addReaction({
+        messageId: id,
+        reacts: updatedReactions,
+      });
+    } catch (error) {
+      console.error('Error adding reaction:', error);
+    }
+  };
   return (
     <Card sx={{ borderRadius: 4 }}>
       <CardContent>
-        <Grid container justifyContent="space-between">
+        <Grid container justifyContent="space-between" spacing={2}>
           <Grid item xs={10}>
             <Typography variant="h2">{title}</Typography>
           </Grid>
@@ -17,6 +35,9 @@ const BoardItem: FC<BoardMessage> = ({ title, content }) => {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="body1">{content}</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Reaction reacts={reacts} onReactionClick={handleReacts} />
           </Grid>
         </Grid>
       </CardContent>

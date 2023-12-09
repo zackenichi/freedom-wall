@@ -84,6 +84,12 @@ const CreateMessage: FC = () => {
         title,
         content: message,
         createdAt: createdAtTimestamp,
+        reacts: {
+          like: 0,
+          heart: 0,
+          funny: 0,
+          dislike: 0,
+        },
       });
       handleClear();
     } catch (error) {
@@ -150,6 +156,7 @@ const CreateMessage: FC = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                name="title"
                 inputRef={titleInputRef}
                 label="Title"
                 variant="standard"
@@ -165,6 +172,7 @@ const CreateMessage: FC = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                name="message"
                 inputRef={messageInputRef}
                 label="Message"
                 variant="filled"

@@ -21,11 +21,16 @@ const Board: FC = () => {
       <>
         {messages &&
           messages.map((message) => {
-            const { id, title, content } = message;
+            const { id, title, content, reacts } = message;
 
             return (
               <Grid item md={3} sm={6} xs={12} key={id}>
-                <BoardItem title={title} content={content} />
+                <BoardItem
+                  id={id}
+                  title={title}
+                  content={content}
+                  reacts={reacts}
+                />
               </Grid>
             );
           })}
