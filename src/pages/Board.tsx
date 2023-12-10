@@ -4,17 +4,12 @@ import { FC } from 'react';
 import { BoardItem } from '../components/BoardItem';
 import { CreateMessage, EmojiToolbar } from '../components/CreateMessage';
 import { useFetchMessagesQuery } from '../features/api/message/messageApiSlice';
-import { LoadingBackdrop } from '../components/LoadingBackdrop';
 
 const Board: FC = () => {
-  const { data: messages, isFetching } = useFetchMessagesQuery(
+  const { data: messages } = useFetchMessagesQuery(
     {},
     { refetchOnFocus: true, pollingInterval: 60 * 1000 }
   );
-
-  if (isFetching) {
-    return <LoadingBackdrop />;
-  }
 
   return (
     <Grid container spacing={2}>

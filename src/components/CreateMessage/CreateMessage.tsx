@@ -29,7 +29,6 @@ import {
 } from '../../features/message/messageSlice';
 
 import { Timestamp } from 'firebase/firestore';
-import { stat } from 'fs';
 
 const TITLE_MAX_CHARS = 70;
 const MSG_MAX_CHARS = 240;

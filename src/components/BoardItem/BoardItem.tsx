@@ -14,7 +14,6 @@ const BoardItem: FC<BoardMessage> = ({ id, title, content, reacts }) => {
       const updatedReactions = { ...reacts };
       (updatedReactions as any)[reactionName] += 1;
 
-      // Assuming addReaction is asynchronous
       await addReaction({
         messageId: id,
         reacts: updatedReactions,
