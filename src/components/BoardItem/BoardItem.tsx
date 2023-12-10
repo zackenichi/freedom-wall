@@ -28,7 +28,7 @@ const BoardItem: FC<BoardMessage> = ({ id, title, content, reacts }) => {
       <CardContent>
         <Grid container justifyContent="space-between" spacing={2}>
           <Grid item xs={10}>
-            <Typography variant="h2" sx={{ wordBreak: 'break-all' }}>
+            <Typography variant="h2" sx={{ wordBreak: 'break-word' }}>
               {title}
             </Typography>
           </Grid>
@@ -36,7 +36,7 @@ const BoardItem: FC<BoardMessage> = ({ id, title, content, reacts }) => {
             <PushPinIcon fontSize="small" />
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="body1" sx={{ wordBreak: 'break-all' }}>
+            <Typography variant="body1" sx={{ wordBreak: 'break-word' }}>
               {content}
             </Typography>
           </Grid>
