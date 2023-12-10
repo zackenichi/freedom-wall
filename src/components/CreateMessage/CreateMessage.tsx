@@ -29,6 +29,7 @@ import {
 } from '../../features/message/messageSlice';
 
 import { Timestamp } from 'firebase/firestore';
+import { stat } from 'fs';
 
 const TITLE_MAX_CHARS = 70;
 const MSG_MAX_CHARS = 240;
@@ -45,6 +46,10 @@ const CreateMessage: FC = () => {
   );
   const messageCount = useSelector(
     (state: RootState) => state.draftMessage.messageCount
+  );
+
+  const selectedField = useSelector(
+    (state: RootState) => state.draftMessage.selectedField
   );
 
   // detecting which index of string we are in
@@ -142,11 +147,13 @@ const CreateMessage: FC = () => {
             </Grid>
             <Grid item xs={2} textAlign="right">
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Tooltip title="Insert emoji">
-                  <IconButton onClick={showEmoji}>
-                    <AddReactionIcon />
-                  </IconButton>
-                </Tooltip>
+                {selectedField !== SelectedField.None && (
+                  <Tooltip title="Insert emoji">
+                    <IconButton onClick={showEmoji}>
+                      <AddReactionIcon />
+                    </IconButton>
+                  </Tooltip>
+                )}
                 <Tooltip title="Close">
                   <IconButton onClick={handleClose}>
                     <CloseIcon />
