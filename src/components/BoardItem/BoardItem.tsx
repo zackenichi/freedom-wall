@@ -23,18 +23,23 @@ const BoardItem: FC<BoardMessage> = ({ id, title, content, reacts }) => {
       console.error('Error adding reaction:', error);
     }
   };
+
   return (
     <Card sx={{ borderRadius: 4 }}>
       <CardContent>
         <Grid container justifyContent="space-between" spacing={2}>
           <Grid item xs={10}>
-            <Typography variant="h2">{title}</Typography>
+            <Typography variant="h2" sx={{ wordBreak: 'break-all' }}>
+              {title}
+            </Typography>
           </Grid>
           <Grid item xs={2} textAlign="right">
             <PushPinIcon fontSize="small" />
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="body1">{content}</Typography>
+            <Typography variant="body1" sx={{ wordBreak: 'break-all' }}>
+              {content}
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <Reaction reacts={reacts} onReactionClick={handleReacts} />
