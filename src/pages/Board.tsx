@@ -19,7 +19,7 @@ const Board: FC = () => {
             const { id, title, content, reacts } = message;
 
             return (
-              <Grid item md={3} sm={6} xs={12} key={id}>
+              <Grid item md={4} sm={6} xs={12} key={id}>
                 <BoardItem
                   id={id}
                   title={title}
